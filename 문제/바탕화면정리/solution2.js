@@ -9,7 +9,7 @@ function solution(wallpaper) {
   // "드래그 한 거리"는 |rdx - lux| + |rdy - luy|로 정의합니다.  계산법 적용시커야할듯
   //기존 계산법: 드래그 시작점(최소)값과 끝점(최대) 구해서 계산 구하는 부분에 3번째 하트 예시에서 문제가있음
   // 최소점은 [0, 1]로 나오는데 배치도에서 보면 0.1 부터시작하면 벗어나는 파일이 발생함
-  // 최대점은 [6, 4]로 나오지만 이와 동일
+  // 최대점은 [6, 4]로 나오지만 이와 최소점과 문제 동일
   for (let i = 0; i < wallpaper.length; i++) {
     const foo = [...wallpaper[i]];
     for (let j = 0; j < foo.length; j++) {

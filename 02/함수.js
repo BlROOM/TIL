@@ -86,10 +86,12 @@ function calculateAverage(calValue, devideNum) {
 
 function calculateScore(score) {
   let result = 0;
+  let count = 0;
   for (let key in score) {
     result += checkScore(studentA[key]);
+    count += 1;
   }
-  return calculateAverage(result, 3);
+  return calculateAverage(result, count);
 }
 
 //Q4 문자열이 주어졌을 때, 연속된 동일한 문자를 하나의 문자와 그 문자의 개수로 압축해서 반환하는 함수를 만들어주세요.

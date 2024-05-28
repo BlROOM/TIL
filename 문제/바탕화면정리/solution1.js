@@ -5,35 +5,30 @@ function solution(wallpaper) {
   const empty = "";
   const full = "#";
   const drag = [];
+  const dotArr = [];
 
   for (let i = 0; i < wallpaper.length; i++) {
     const foo = [...wallpaper[i]];
-    console.log(foo, i);
+    // console.log(foo, i);
     for (let j = 0; j < foo.length; j++) {
       if (foo[j] === full) {
         drag.push([i, j]);
       }
     }
   }
-  console.log(drag, "Drag");
-  let dotMin = drag[0];
-  let dotMax = drag[0];
-  let firstDotMax = drag[0][1];
+  console.log(drag);
+  let minDot = [...drag[0]];
+  let maxDot = [...drag[0]];
   for (let i = 1; i < drag.length; i++) {
-    if (drag[i][0] < dotMin[0] && drag[i][1] < dotMin[1]) {
-      dotMin = drag[i];
+    if (minDot[0] - minDot[1] > drag[i][0] - drag[i][1]) {
+      minDot = [...drag[i]];
     }
-    if (drag[i][0] > dotMin[0] && drag[i][1] > dotMin[1]) {
-      dotMax = drag[i];
+    if (maxDot[0] - maxDot[1] < drag[i][0] - drag[i][1]) {
+      maxDot = [...drag[i]];
     }
-    console.log(dotMin, drag[i]);
-    console.log(dotMax, drag[i]);
   }
-  dotMax[0] += 1;
-  dotMax[1] += 1;
-  const answer = [...dotMin, ...dotMax].sort();
-  //   const answer = [];
-  return answer;
+  console.log(minDot, maxDot);
+  return;
 }
 
 // 드래그는 바탕화면의 격자점 S(lux, luy)를 마우스 왼쪽

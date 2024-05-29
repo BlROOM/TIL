@@ -2,13 +2,13 @@
 // 사의의 모든 정수 배열을 반환하게 하세요.
 //  이때 매개변수 b는 a보다 크다고 가정합니다.
 
-// function solution(a, b) {
-//   const answer = [];
-//   for (let i = a; i <= b; i++) {
-//     answer.push(i);
-//   }
-//   return answer;
-// }
+function solution(a, b) {
+  const answer = [];
+  for (let i = a; i <= b; i++) {
+    answer.push(i);
+  }
+  return answer;
+}
 
 // console.log(solution(1, 4));
 // console.log(solution(5, 10));

@@ -10,8 +10,8 @@ function solution(a, b) {
   return answer;
 }
 
-// console.log(solution(1, 4));
-// console.log(solution(5, 10));
+console.log(solution(1, 4));
+console.log(solution(5, 10));
 // For example:
 // a = 1
 // b = 4

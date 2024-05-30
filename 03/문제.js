@@ -6,8 +6,24 @@
 //     15231 -> 13251
 // */
 
+// function reverse_to_number(number) {
+//   return [...String(number)].reverse().join("");
+// }
+
 function reverse_to_number(number) {
-  return [...String(number)].reverse().join("");
+  const strName = number.toString();
+  console.log("strName", strName);
+  const strArr = strName.split("");
+  console.log("strArr", strArr);
+
+  const reverseArr = strArr.reverse();
+  console.log("reverse", reverseArr);
+
+  const revrseStr = reverseArr.join("");
+  console.log("reverseStr", revrseStr);
+
+  // return Number(revrseStr);
+  return parseInt(revrseStr);
 }
 
 let a = reverse_to_number(32125);

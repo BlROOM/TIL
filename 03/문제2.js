@@ -14,15 +14,34 @@
 //   return strArr[strIdx];
 // }
 
+// function findLongStr(str) {
+//   const strArr = str.split(" ");
+//   const result = strArr.reduce((x, y) => {
+//     if (x.length < y.length) {
+//       return y;
+//     } else {
+//       return x;
+//     }
+//   });
+//   return result;
+// }
+
+// function findLongStr(str) {
+//   let arr = str.split(" ");
+//   let longStr = "";
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i].length > longStr.length) {
+//       longStr = arr[i];
+//     }
+//   }
+//   return longStr;
+// }
+
 function findLongStr(str) {
-  const strArr = str.split(" ");
-  const result = strArr.reduce((x, y) => {
-    if (x.length < y.length) {
-      return y;
-    } else {
-      return x;
-    }
-  });
+  const result = str
+    .split(" ")
+    .sort((a, b) => b.length - a.length)
+    .shift();
   return result;
 }
 

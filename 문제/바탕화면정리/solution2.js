@@ -18,24 +18,10 @@ function solution(wallpaper) {
       }
     }
   }
+
+  drag[1][0] - drag[0][0] + drag[1][1] - drag[0][1];
   console.log(drag, "Drag");
-  let dotMin = drag[0];
-  let dotMax = drag[0];
-  let firstDotMax = drag[0][1];
-  for (let i = 1; i < drag.length; i++) {
-    if (drag[i][0] < dotMin[0] && drag[i][1] < dotMin[1]) {
-      dotMin = drag[i];
-    }
-    if (drag[i][0] > dotMin[0] && drag[i][1] > dotMin[1]) {
-      dotMax = drag[i];
-    }
-    console.log(dotMin, drag[i]);
-    console.log(dotMax, drag[i]);
-  }
-  dotMax[0] += 1;
-  dotMax[1] += 1;
-  const answer = [...dotMin, ...dotMax].sort();
-  //   const answer = [];
+  const answer = [];
   return answer;
 }
 

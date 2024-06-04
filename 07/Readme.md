@@ -47,6 +47,7 @@
 
 ### useCallback
 
+- useCallback 함수를 생성하는 곳에서 메모이제이션 하는 것이 원칙
 - const [user, setUser] = useState(userInialized);
 - const onChangeHandler = useCallback(
   (text: string) => {
@@ -64,3 +65,117 @@
 
 - 많은 연산,작업이 들어간 값을 메모이제이션, 즉 계산을 방지할 때 사용한다.
 - 의존성배열에 어떠한 값이 변경될 때 해당 연산을 실행시킬 값을 넣어준다.
+- useMemo는 사용하곳에서 값을 감싸주는 것을 원칙으로 사용
+
+### useRedcuer
+
+- useReducer는 생성시 딱 한번만 생성된다.
+- 그러므로 useReducer라는 참조값은 변하지 않으므로 dispatch 자동으로 메모이제이션 되는 현상
+- https://ko.legacy.reactjs.org/docs/hooks-reference.html#usereducer
+- //const [state, dispatch] = useReducer(reducer, initialArg, init);
+
+- const [state, dispatch] = useReducer(reducer, 0);
+
+- const reducer = (state: number, action: any) => {
+  console.log(state, action);
+  // useRedcuer에 매개변수로 들어갈 콜백함수
+  // 상태관리 로직
+  // action안에있는 type이라는 속성값을 이용해
+  // state 값을 다룬다
+  // action.type값을다루는게 관례
+  switch (action.type) {
+  case "sucoading":
+  return state + 100;
+  case "snifer":
+  return state + 50;
+  }
+  return state;
+  };
+
+- // dispatch를 호출하게되면 reducer함수가(useReducer함수에 첫번째 매개변수) 호출됨!
+-       <button onClick={() => dispatch({ type: "sucoading", payload: 100 })}>
+
+- dispatch를 사용할때는 type과 payload를 매개변수로 하여 호출한다.
+
+- Reducer Hook에서 현재 state와 같은 값을 반환하는 경우 React는 자식을 리렌더링하거나 effect를 발생하지 않고 이것들을 회피할 것입니다. (React는 Object.is 비교 알고리즘을 사용합니다.)
+
+### Context API
+
+- import React, { createContext, SetStateAction, useState } from "react";
+  import NavBar from "./components/Navbar";
+  import Home from "./components/Home";
+  // import Banner from "./components/Banner";
+
+type CountContextType = {
+count: number;
+setCount: React.Dispatch<SetStateAction<number>>;
+};
+export const CountContext = createContext<CountContextType | null>(null);
+const App = () => {
+const [count, setCount] = useState(0);
+return (
+<>
+<CountContext.Provider value={{ count, setCount }}>
+<NavBar />
+{/_ <NavBar count={count} /> _/}
+<Home />
+</CountContext.Provider>
+</>
+);
+};
+
+export default App;
+
+- react 에서 creatContext 를 import해서 전역 상태값을 사용할 컴포넌트들을 Context.provier 로 감싼후 value 속성을 활용해서 사용할 값들을 넣어준다, state 및 setState
+- const [count, setCount] = useState(0);
+
+-       <CountContext.Provider value={{ count, setCount }}>
+
+- import React, {
+  createContext,
+  ReactNode,
+  SetStateAction,
+  useState,
+  } from "react";
+  type CountContextType = {
+  count: number;
+  setCount: React.Dispatch<SetStateAction<number>>;
+  };
+  export const CountContext = createContext<CountContextType>({
+  count: 0,
+  setCount: () => {},
+  });
+  const CounterProvier = ({ children }: { children: ReactNode }) => {
+  const [count, setCount] = useState(0);
+
+  return (
+  <CountContext.Provider value={{ count, setCount }}>
+  {children}
+  </CountContext.Provider>
+  );
+  };
+
+export default CounterProvier;
+
+- 이런식으로 context.provider를 감싸는 컴포넌트를 만들어서 childrend을 props로받아 return하는 형식의 컴포넌트로 사용한다!
+- 이렇게사용하지않고 app 최상위 컴포넌트에서 바로 context.provider를 사용하면 전체가 리렌더링된다.
+
+### 상태 끌어올리기
+
+- #### State 상태 끌어 올리기
+
+  - 단방향 데이터 흐름이라는 원칙에 따라 하위 컴포넌트는 상위 컴포넌트로부터 전달받은 데이터의 형태나 타입이 무엇인지만 알수 있다. 즉, 데이터가 state로부터 왔는지, 하드코딩으로 입력된 내용인지 알지 못한다. 이러한 문제를 React는 다음과 같이 해결했다. 상위 컴포넌트의 "상태를 변경하는 함수" 그 자체를 하위 컴포넌트로 전달하고, 이 함수를 하위 컴포넌트가 실행한다. 이것은 단방향 데이터 흐름의 원칙을 벗어나지 않는 해결 방법이다. 이것이 바로 상태 끌어올리기 이다.
+
+- 변하지 않는 외부(부모)로 부터 전달 받은 값
+  props를 함수의 전달인자 처럼 전달 받아 이를 기반으로 화면에 어떻게 표시 되는지 기술하는 React 엘리먼트를 반환(객체 형태로 반환) 한다.
+  부모 컴포넌트(상위 컴포넌트)로 부터 전달 받은 것으로 읽기 전용이다. (수정x)
+- 외부로 부터 전달 받아 변하지 않는 값으로 함부로 변경될 수 없는 읽기 전용이다.(read-only)
+- 공통으로 사용하는 상태만 끌어 올리는게 좋다.
+- props는 읽기 전용으로 자식 컴포넌트에서 - 전달받은 데이터를 변경할 수 없다.
+- 상태 데이터를 다른 컴포넌트에서도 사용할 경우 최상위 컴포넌트에 배치하는 게 좋다.
+
+### Context api 에서의 최적화 실패
+
+- context provider 안에있는 함수, 값들을 usememo, useCallback으로 감싸서 사용해 자식 컴포넌트들에서 사용해도 최적화가 되지않는 오류가 발생한다
+- 해당 값들을 한번 더 context provider로 감싼후에 한번더 메모이제이션 함수들로 감싸야 최적화가 된다?
+- 그만큼 최적화에 context api는 까다롭고 다른 상태관리 라이브러리를 사용하는 것이 좋을 듯 하다.

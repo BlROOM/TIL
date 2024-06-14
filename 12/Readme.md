@@ -1,3 +1,16 @@
+### Next 캐싱 상태 확인
+
+- /\*_ @type {import('next').NextConfig} _/
+  const nextConfig = {
+  logging: {
+  fetches: {
+  fullUrl: true,
+  },
+  },
+  };
+
+export default nextConfig;
+
 ### Next의 route cache
 
 - Next Cache동작은 route cache => full route cache => request memoization => data cache => data source 로 이어져 있다.

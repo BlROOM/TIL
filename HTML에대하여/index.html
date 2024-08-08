@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Metadata content : 콘텐츠와 문서를 구조화 하는 요소를 의미, 다른 콘텐츠의 표시, 동작, 관계등을 설정 -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Flow Content 및 Block Content : body에 포함할 수 있는 모든 요소 -->
+
+    <!-- a요소에는 'href'속성이 필수 속성은 아니다 -->
+    <!-- 그러므로 해당 태그는 유효한 태그!-->
+    <a>Is it valid?</a>
+    <!-- HTML5 부터는 a태그안에 블록 컨테이너를 담을 수 있음 -->
+    <a><div>Is it valid?</div></a>
+
+    <!-- p태그안에 a태그 그 안에 div태그는 적절한 마크업일까? : 적절하지 않다!-->
+    <!-- Content model : p태그는 phrasing a태그또한 phrasing 콘텐츠 
+     그렇기에 p태그안에 a요소는 유효하다!-->
+    <p>
+      <a>
+        <!-- Category : flow, phrasing, interactive, palpable -->
+        <!-- Content model : transparent == phrasing 
+         a요소는 transparent 투명하기 때문에 a태그 자식에 무엇이 오든 허용이된다.
+         하지만 a요소가 투명하기때문에 부모요소를 따라간다. phrasing 콘텐츠가 된다.-->
+
+        <!--div태그 - Category : flow, palpable
+         div태그는 phrasing 콘텐츠가 아니기때문에 이 HTML마크업은 유효하지 않다! -->
+        <div>Is it valid?</div>
+      </a>
+    </p>
+
+    <!-- W3C 에서 제공하는 HTML 명세는 이제 Superseded 폐기된 상태이다 -->
+    <!-- 현재는 Watwg 라는 그룹에서 HTML표준을 만들고 명시하고있음
+     브라우저 제조사(구글,애플, 마이크로소프트, 모질라)연합 -->
+
+    <!-- Sectioning content (섹셔닝 콘텐츠) : 문서의 개요를 형성, 헤딩, 헤더 풋터의 범위
+      article, aside, nav, section
+      각 세셔닝 콘텐츠는 암시적인 개요를 형성, 섹셔닝 콘텐츠와 헤딩 콘테츠를 함께 사용하면 명시적인 개요를 형성
+      
+    display: block 속성-->
+    <article>알티클 태그</article>
+    <aside>어사이드 태그</aside>
+    <nav>네브 태그</nav>
+    <section>섹션 태그</section>
+
+    <!-- Heading content : 섹셔닝 콘텐츠가 없어도 헤딩 콘텐츠가 있으면 암시적으로 섹션(== 문서의 개요)이 형성
+     h1 ~ 6 , hgroup-->
+    <h1>헤딩 콘텐츠</h1>
+    <h2></h2>
+    <h3></h3>
+    <h4></h4>
+    <h5></h5>
+
+    <!-- Pharsing content (프레이징 콘텐츠), Inline Content: 구문 콘텐츠, 단락을 형성하는 콘텐츠 
+        link, meta, noscript ,script template 태그들은 자동적으로 display:none 속성을 가지고있음 
+        a, abbr, area, audio, b, bdi, bdo, br, button, canvas, cite, code, data, datalist,
+        del, dfn, em ,embed , i, iframe, img, input, ins, kbd, label, link, map, mark, math, meta,
+        noscript, object, output, picture, progress, q, ruby, s, samp, script, select, slot, small,
+        span, strong, sub, sup, svg, template, textarea, time, u, var, video, wbr, autonomous custom elements, 
+        text
+
+        display: inline | inline-block | none 속성
+    -->
+    <iframe src="" frameborder="0"></iframe>
+    <canvas src="" frameborder="0"></canvas>
+    <textarea></textarea>
+
+    <!-- Embedded content (임베디드 콘텐츠) : 외부 자원을 참조하는 콘텐츠
+        audio, canvas, embed, iframe, img, math, object, picture, svg, video
+        모든 임베디드 콘텐츠는 구문 콘텐츠이다. 외부 자원을 지원하지 않는 경우 대체 자원을 명시할 수 있다.
+        display: inline | inline-block 속성
+    -->
+    <audio src=""></audio>
+    <img src="" alt="" />
+
+    <!-- Interactive Content (인터렉티브 콘텐츠) : 사용자와 상호 작용할 수 있는 콘텐츠
+    a, audio, button, details, embed, iframe, img, input, label, select, textarea, video
+    입력 장치(키보드, 마우스)로 조작할 수 있다. 
+    display: inline | inline-block 속성
+    -->
+
+    <!-- Palpable content (팰퍼블 콘텐츠) : 비어 있지 않은 ,볼  수 있는 콘텐츠, hidden 속성이 없는 
+     화면에서 숨겨져 있지 않고, 보거나 클릭, 드래그 같은 설정을 할 수있는 태그 
+    -->
+
+    <!-- Script-supporting element (스크립트 지원모델) 
+        script, template 
+    -->
+
+    <!--Transparent content models (투명 콘텐츠 모델) : 투명 콘텐츠 모델, 부모의 콘텐츠 모델을 따른다.
+    a, ins, del, object, video, audio, map, noscript, canvas
+    투명한 요소를 제거해도 부모와 자식 관계가 문법적으로 유효해야한다.
+    -->
+  </body>
+</html>

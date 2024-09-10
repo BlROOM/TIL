@@ -1,6 +1,5 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/159994?language=javascript
 
-//실패
 function solution(cards1, cards2, goal) {
   const result = [];
   for (let i = 0; i < goal.length; i++) {

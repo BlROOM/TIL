@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // https://school.programmers.co.kr/learn/courses/30/lessons/150370
 
 function solution(today, terms, privacies) {
@@ -25,6 +26,13 @@ function solution(today, terms, privacies) {
     // answer.push(i);
   }
 
+=======
+// https://school.programmers.co.kr/learn/courses/30/lessons/150370?language=javascript
+function solution(today, terms, privacies) {
+  const MAX = 28;
+  console.log(28 * 12);
+  var answer = [];
+>>>>>>> e9ae0141891b5c640c0735144e4b789c19b87b28
   return answer;
 }
 
@@ -35,6 +43,7 @@ console.log(
     ["2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"]
   )
 ); //	[1, 3]
+<<<<<<< HEAD
 
 // console.log(
 //   solution(
@@ -51,3 +60,18 @@ console.log(
 // );
 
 // [1, 4, 5]
+=======
+// console.log(
+//   solution(
+//     "2020.01.01",
+//     ["Z 3", "D 5"],
+//     [
+//       "2019.01.01 D",
+//       "2019.11.15 Z",
+//       "2019.08.02 D",
+//       "2019.07.01 D",
+//       "2018.12.28 Z",
+//     ]
+//   )
+// ); // [1, 4]
+>>>>>>> e9ae0141891b5c640c0735144e4b789c19b87b28
